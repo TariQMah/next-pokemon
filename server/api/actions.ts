@@ -1,5 +1,3 @@
-"use server";
-
 import { request } from "@/utils/axios-utils";
 
 async function fetchData(url: string): Promise<any> {
@@ -8,7 +6,7 @@ async function fetchData(url: string): Promise<any> {
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
-    throw error; // Re-throw the error to handle it outside this function if needed
+    throw error;
   }
 }
 

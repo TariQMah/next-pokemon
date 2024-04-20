@@ -5,6 +5,8 @@ import {
 } from "@tanstack/react-query";
 import { getSpecificCategory } from "@/server/api/actions";
 import ListTypes from "@/components/ListTypes";
+
+
 export default async function Category({ params }: any) {
   const queryClient = new QueryClient();
 

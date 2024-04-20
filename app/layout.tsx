@@ -17,6 +17,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { getCategories } from "@/server/api/actions";
+import { Suspense } from "react";
 
 export default async function RootLayout({
   children,
@@ -32,7 +33,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider>{children}</Provider>
+        <Provider>
+          <Suspense fallback={"Loading...."}>{children}</Suspense>
+        </Provider>
       </body>
     </html>
   );
