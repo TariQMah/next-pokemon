@@ -4,7 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { getSpecificCategory } from "@/server/api/actions";
-import ListPokemon from "@/Components/ListPokemon";
+import ListTypes from "@/components/ListTypes";
 export default async function Category({ params }: any) {
   const queryClient = new QueryClient();
 
@@ -14,10 +14,10 @@ export default async function Category({ params }: any) {
   });
   return (
     <>
-      <h1>All Pokemon Based on {params.slug}</h1>
+      <h1>All Pokemon Based on category: {params.slug}</h1>
 
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <ListPokemon slug={params.slug} />
+        <ListTypes type="types" slug={params.slug} />
       </HydrationBoundary>
     </>
   );

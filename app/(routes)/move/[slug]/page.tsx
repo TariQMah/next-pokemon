@@ -3,22 +3,21 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getSpecificCategory } from "@/server/api/actions";
-import ListPokemon from "@/Components/ListPokemon";
+import { getPokemonByMove, getSpecificCategory } from "@/server/api/actions";
+import ListTypes from "@/components/ListTypes";
 export default async function Category({ params }: any) {
-  console.log("params: ", params.slug);
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["types"],
-    queryFn: () => getSpecificCategory(params.slug || ""),
+    queryKey: ["move"],
+    queryFn: () => getPokemonByMove(params.slug || ""),
   });
   return (
     <>
-      <h1>All Pokemon Based on {params.slug}</h1>
+      <h1>All Pokemon Based on move: {params.slug}</h1>
 
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <ListPokemon slug={params.slug} />
+        <ListTypes type={"move"} slug={params.slug} />
       </HydrationBoundary>
     </>
   );
